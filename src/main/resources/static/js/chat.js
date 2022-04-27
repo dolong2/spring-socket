@@ -1,6 +1,9 @@
 $(document).ready(function(){
+    let href = window.location.href;
+    href=new URL(href);
+    let params = href.searchParams;
 
-    const username = "oo";
+    const username = params.get('memberName');
 
     $("#disconn").on("click", (e) => {
         disconnect();

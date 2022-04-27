@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <!--/*@thymesVar id="member" type="com.socket.chat.domain.Member"*/-->
+    <form th:action th:object="${member}" method="post">
+        <div>
+            <label>회원 이름</label>
+            <input th:field="*{name}">
+        </div>
+        <div>
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">저장</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
