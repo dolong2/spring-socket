@@ -1,8 +1,10 @@
 $(document).ready(function(){
     const username = getCookie("userName");
 
-    $("#disconn").on("click", (e) => {
-        disconnect();
+    $("#button-disconnect").on("click", (e) => {
+        onClose();
+        deleteCookie("userName");
+        location.href="http://localhost:8080/";
     })
 
     $("#button-send").on("click", (e) => {
@@ -25,7 +27,7 @@ $(document).ready(function(){
     }
 
     //채팅창에서 나갔을 때
-    function onClose(evt) {
+    function onClose() {
         var str = username + ": 님이 방을 나가셨습니다.";
         websocket.send(str);
     }
@@ -85,6 +87,10 @@ $(document).ready(function(){
             cValue = cookieData.substring(start, end);
         }
         return unescape(cValue);
+    }
+
+    function deleteCookie(name) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 
 })
