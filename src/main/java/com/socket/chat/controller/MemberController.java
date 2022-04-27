@@ -6,8 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class MemberController {
@@ -17,9 +18,9 @@ public class MemberController {
         return "/socket/name";
     }
     @PostMapping("/")
-    public String inputName(@ModelAttribute Member member, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("memberName", member.getName());
-        redirectAttributes.addAttribute("status", true);
+    public String inputName(@ModelAttribute Member member, HttpServletResponse response){
+        Cookie cookie = new Cookie("userName", member.getName());
+        response.addCookie(cookie);
         return "redirect:/chat";
     }
 }

@@ -1,9 +1,5 @@
 $(document).ready(function(){
-    let href = window.location.href;
-    href=new URL(href);
-    let params = href.searchParams;
-
-    const username = params.get('memberName');
+    const username = getCookie("userName");
 
     $("#disconn").on("click", (e) => {
         disconnect();
@@ -77,4 +73,18 @@ $(document).ready(function(){
             $("#msgArea").append(str);
         }
     }
+
+    function getCookie(cName) { cName = cName + '=';
+        var cookieData = document.cookie;
+        var start = cookieData.indexOf(cName);
+        var cValue = '';
+        if(start != -1){
+            start += cName.length;
+            var end = cookieData.indexOf(';', start);
+            if(end == -1)end = cookieData.length;
+            cValue = cookieData.substring(start, end);
+        }
+        return unescape(cValue);
+    }
+
 })
