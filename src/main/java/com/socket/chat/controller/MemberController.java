@@ -1,6 +1,7 @@
 package com.socket.chat.controller;
 
 import com.socket.chat.domain.Member;
+import com.socket.chat.error.exception.MemberNameEmptyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,9 @@ public class MemberController {
     }
     @PostMapping("/")
     public String inputName(@ModelAttribute Member member, HttpServletResponse response){
+        if(member.getName()==""){
+            throw new MemberNameEmptyException();
+        }
         Cookie cookie = new Cookie("userName", member.getName());
         response.addCookie(cookie);
         return "redirect:/chat";
