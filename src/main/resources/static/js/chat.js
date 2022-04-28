@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    const username = getCookie("userName");
 
     $("#button-disconnect").on("click", (e) => {
         onClose();
