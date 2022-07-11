@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MemberController {
     @GetMapping("/")
-    public String main(Model model, HttpServletRequest request){
+    public String name(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         if(session.getAttribute("user")!=null){
             session.invalidate();

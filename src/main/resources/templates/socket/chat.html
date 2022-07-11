@@ -13,6 +13,11 @@
                 <label><b>채팅방</b></label>
             </div>
             <div>
+                <div class='col-6' th:each="chat : *{chats}">
+                    <div class='alert alert-secondary'>
+                        <b th:text="${chat.writer} +' : '+ ${chat.content}"></b>
+                    </div>
+                </div>
                 <div id="msgArea" class="col"></div>
                 <div class="col-6">
                     <div class="input-group mb-3">
